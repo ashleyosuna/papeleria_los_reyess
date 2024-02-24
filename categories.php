@@ -1,23 +1,9 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    //$product = $_POST["product_name"];
 
     try {
         require_once "dbh.inc.php";
 
-        //$query = "SELECT * FROM Catalog WHERE name LIKE CONCAT('%', :product_name, '%') or marca LIKE CONCAT('%', :product_name, '%') or category LIKE CONCAT('%', :product_name, '%')";
-
-        //$query = "SELECT * FROM Catalog WHERE category='escuela'";
-        //$stmt = $pdo->prepare($query);
-
-        //$stmt->bindParam(":product_name", $product);
-
-        //$stmt->execute();
-
-        //$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        //$pdo = null;
-        //$stmt = null;
         if (isset($_POST['btnEscolar'])){
             $query = "SELECT * from Catalog where category='escuela'";
             $stmt = $pdo->prepare($query);
@@ -55,27 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }else{
     header("Location: ../los_reyess.php");
 }
-
-/*try {
-    require_once "dbh.inc.php";
-
-    //$query = "SELECT * FROM Catalog WHERE name LIKE CONCAT('%', :product_name, '%') or marca LIKE CONCAT('%', :product_name, '%') or category LIKE CONCAT('%', :product_name, '%')";
-
-    $query = "SELECT * FROM Catalog WHERE category='escuela'";
-
-    $stmt = $pdo->prepare($query);
-
-    //$stmt->bindParam(":product_name", $product);
-
-    $stmt->execute();
-
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    $pdo = null;
-    $stmt = null;
-} catch (PDOException $e) {
-    die("Query failed: " . $e->getMessage());
-}*/
 ?>
 
 <!DOCTYPE html>
@@ -125,10 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }else {
                     foreach ($results as $row) {
                         echo "<div class='product'>";
-                        //echo "<img src=" . $row["img_src"] . ">";
                         echo "<img src='" . $row["img_src"] . "'>";
                         echo "<h5>" . htmlspecialchars($row["description"]) . "</h5>";
-                        //echo "<p>" . htmlspecialchars($row["marca"]) . "</p>";
                         echo "<p>$" . htmlspecialchars($row["price"]) . "</p>";
                         echo "</div>";
                     }
